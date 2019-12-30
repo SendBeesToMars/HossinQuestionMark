@@ -24,7 +24,7 @@ function build_table(){
     getServers(CORS_bypass + servers_URL, CORS_bypass + server_info_URL)
     .then(([servers, server_info]) =>{
 
-        console.log(servers);
+        console.log("wtf is this bullshit");
         servers = servers.world_list;
         
         // servers.forEach(server => {
@@ -52,8 +52,8 @@ function fetch_data_from_URL(url){
     })
     .then(res => res.json())
     .then((out) => {
-        // return out;
         console.log(out);
+        return out;
     })
     .catch(err => {throw err});
 }
