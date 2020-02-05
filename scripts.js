@@ -30,18 +30,18 @@ function build_table(){
         servers.forEach(server => {
             hossin_viability = true;
             if(server.name.en != "Briggs"){
-                server_pop = (server_info["result"][server["world_id"]][0]["nc"] 
-                        + server_info["result"][server["world_id"]][0]["tr"] 
-                        + server_info["result"][server["world_id"]][0]["vs"] 
-                        + server_info["result"][server["world_id"]][0]["ns"]);
+                server_pop = (server_info.result[server.world_id][0].nc +
+                        server_info.result[server.world_id][0].tr +
+                        server_info.result[server.world_id][0].vs +
+                        server_info.result[server.world_id][0].ns);
                 if (server_pop > 600){
                     let server_terry_caps;
                     while(typeof server_terry_caps === "undefined"){
                         try{
-                            server_terry_caps = fetch_data_from_URL(CORS_bypass + fisu_terry_URL + "/?world=" + [server["world_id"]][0] + "&continent=4");
+                            server_terry_caps = fetch_data_from_URL(CORS_bypass + fisu_terry_URL + "/?world=" + [server.world_id][0] + "&continent=4");
                         }
                         catch(err){
-                            console.log("shits fucked for " + server["name"]["en"] + "... trying again " + err);
+                            console.log("shits fucked for " + server.name.en + "... trying again " + err);
                             sleep(15000);
                         }
                     }
@@ -55,7 +55,7 @@ function build_table(){
                                 console.log("setting hossing to false");
                                 hossin_viability = false;
                             }
-                        })
+                        });
                     });
                 }
                 else {
@@ -81,7 +81,7 @@ function fetch_data_from_URL(url){
         }
     })
     .then(res => res.json())
-    .catch(err => {throw err});
+    .catch(err => {throw err;});
 }
 
 function getServers(url, url2){
