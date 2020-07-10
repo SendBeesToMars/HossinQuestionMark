@@ -1,11 +1,12 @@
 import requests
 from time import sleep
+import os
 
 #All game data requests follow the format: http://census.daybreakgames.com/[s:service_id]/format/verb/game/collection[/identifier][?modifier]
 #All game image request follow the format: http://census.daybreakgames.com/[s:service_id]/img/game/collection/identifier[/imageType]
 
 base_URL = "http://census.daybreakgames.com"
-service_ID = "/s:freeongtaxi"
+service_ID = "/s:" + os.environ.get(""PS2_SERVICE_ID"")
 request_type = "/get"
 PS2_API_version = "/ps2:v2"
 DGC_request_URL_base = base_URL + service_ID + request_type +  PS2_API_version
